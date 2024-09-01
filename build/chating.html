@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Application</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.chat-container {
+    width: 100%;
+    max-width: 500px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.chat-box {
+    height: 400px;
+    overflow-y: scroll;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    width: fit-content;
+    max-width: 80%;
+}
+
+.message.user {
+    background-color: #DCF8C6;
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.message.bot {
+    background-color: #ECECEC;
+    align-self: flex-start;
+}
+
+.input-box {
+    display: flex;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #5cb85c;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div id="chat-box" class="chat-box">
+            <!-- Messages will be displayed here -->
+        </div>
+        <div class="input-box">
+            <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off">
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // script.js
+
+// References to HTML elements
+const chatBox = document.getElementById('chat-box');
+const chatInput = document.getElementById('chat-input');
+const sendBtn = document.getElementById('send-btn');
+
+// Function to add a message to the chat box
+function addMessage(message, sender) {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message', sender);
+    messageDiv.innerText = message;
+    chatBox.appendChild(messageDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to the bottom
+}
+
+// Handle sending a message
+function sendMessage() {
+    const message = chatInput.value.trim();
+    if (message !== '') {
+        addMessage(message, 'user');
+        chatInput.value = '';
+
+        // Simulate bot response
+        setTimeout(() => {
+            addMessage("Bot: I'm a agriculture bot!", 'bot');
+        }, 1000);
+    }
+}
+
+// Event listener for the send button
+sendBtn.addEventListener('click', sendMessage);
+
+// Event listener for Enter key press in the input box
+chatInput.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+});
+    </script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farming Consultancy Services</title>
+    <style>
+        /* Basic styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f4f9f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #006400;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 20px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        #services {
+            background-color: #e0f2e0;
+            border-radius: 8px;
+            padding: 40px 20px;
+        }
+
+        .service-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .service-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .service-card h3 {
+            color: #006400;
+            margin: 15px 0;
+        }
+
+        .service-card p {
+            padding: 0 15px 20px;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #006400;
+            color: #fff;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        form label {
+            margin-top: 10px;
+            text-align: left;
+            width: 100%;
+        }
+
+        form input, form textarea {
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+
+        form button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #006400;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        form button:hover {
+            background-color: #004d00;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Farming Consultancy Services</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h2>Welcome to Our Farming Consultancy Platform</h2>
+        <p>Expert advice on new crops and solutions to your farming challenges.</p>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="service-container">
+            <div class="service-card">
+                <img src="https://www.shutterstock.com/image-photo/doctor-testing-examining-crops-quality-600nw-2146704809.jpg" alt="New Crop Recommendations">
+                <h3>New Crop Recommendations</h3>
+                <p>Discover the best crops to grow based on your soil type, climate, and market demand.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://jcmatrix.com/wp-content/uploads/2024/04/pests-pesticide.jpg.webp" alt="Pest Management">
+                <h3>Pest Management</h3>
+                <p>Get tailored solutions for managing pests and diseases affecting your crops.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSh-e0CEs1IlJXhyFJ-sbI8XnHqqcMD1-d-Q&s" alt="Sustainable Farming Practices">
+                <h3>Sustainable Farming Practices</h3>
+                <p>Learn how to improve soil health, conserve water, and boost your farm's productivity sustainably.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Get in touch</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Farming Consultancy Services. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Identifier</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background: #e8f5e9;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100%;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .header {
+            background: #388e3c;
+            color: #ffffff;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .form-container {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-container input[type="file"] {
+            margin: 1rem 0;
+            width: 100%;
+        }
+
+        .form-container button {
+            background: #388e3c;
+            border: none;
+            border-radius: 4px;
+            color: #ffffff;
+            padding: 0.75rem;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        .form-container button:hover {
+            background: #2e7d32;
+        }
+
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 4px solid #388e3c;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 1rem auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .results {
+            margin-top: 1rem;
+            max-height: 50vh;
+            overflow-y: auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .results h2 {
+            color: #388e3c;
+            margin-top: 1rem;
+        }
+
+        .results p {
+            color: #2e7d32;
+            margin: 0.5rem 0;
+        }
+
+        .similar-images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .similar-images img {
+            max-width: 100px;
+            margin: 0.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+
+            .header,
+            .form-container,
+            .results {
+                max-width: 100%;
+                padding: 1rem;
+            }
+
+            .form-container button {
+                font-size: 0.9rem;
+            }
+
+            .similar-images img {
+                max-width: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-container button {
+                font-size: 0.8rem;
+            }
+
+            .similar-images img {
+                max-width: 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Plant Disease Identifier</h1>
+        </div>
+        <div class="form-container">
+            <input type="file" id="plantImage" accept="image/*">
+            <button onclick="identifyDisease()">Identify Disease</button>
+            <div class="loader" id="loader"></div>
+            <div class="results" id="results"></div>
+            <button id="contactUsButton" style="display:none;">Consult with experts</button>
+        </div>
+    </div>
+
+    <script>
+        async function identifyDisease() {
+            const fileInput = document.getElementById('plantImage');
+            const resultsDiv = document.getElementById('results');
+            const loader = document.getElementById('loader');
+            const contactUsButton = document.getElementById('contactUsButton');
+
+            if (fileInput.files.length === 0) {
+                alert('Please select an image!');
+                return;
+            }
+
+            loader.style.display = 'block';
+            resultsDiv.innerHTML = '';
+            contactUsButton.style.display = 'none';
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onloadend = async function () {
+                const base64String = reader.result.replace(/^data:image\/[a-z]+;base64,/, '');
+
+                const payload = {
+                    images: [base64String],
+                    latitude: 49.207,
+                    longitude: 16.608,
+                    similar_images: true
+                };
+
+                try {
+                    const identifyResponse = await fetch('https://crop.kindwise.com/api/v1/identification', {
+                        method: 'POST',
+                        body: JSON.stringify(payload),
+                        headers: {
+                            'Api-Key': 'vm7AK6nn0BCLHwKhaAYXKaQJ9yGh12rTK6cLTlvhNZhYf6hJIU',
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    if (!identifyResponse.ok) {
+                        throw new Error(`HTTP error! Status: ${identifyResponse.status}`);
+                    }
+
+                    const identifyData = await identifyResponse.json();
+                    const diseases = identifyData?.result?.disease?.suggestions;
+
+                    displayResults(diseases);
+
+                    contactUsButton.style.display = 'block';  // Show the button after results
+                    contactUsButton.onclick = function () {
+                        sendWhatsAppMessage('9861172931', identifyData.result);
+                    };
+
+                } catch (error) {
+                    resultsDiv.innerHTML = `<p style="color: red;">An error occurred while processing the image: ${error.message}</p>`;
+                } finally {
+                    loader.style.display = 'none';
+                }
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        function displayResults(diseases) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            if (diseases && diseases.length > 0) {
+                diseases.forEach(disease => {
+                    const similarImagesHTML = disease.similar_images.map(image =>
+                        `<img src="${image.url_small}" alt="Similar Image">`).join('');
+
+                    resultsDiv.innerHTML += `
+                        <h2>Disease: ${disease.name}</h2>
+                        <p>Probability: ${(disease.probability * 100).toFixed(2)}%</p>
+                        <div class="similar-images">${similarImagesHTML}</div>
+                        <hr>`;
+                });
+            } else {
+                resultsDiv.innerHTML = '<p>No disease detected.</p>';
+            }
+        }
+
+        function sendWhatsAppMessage(whatsappNumber, result) {
+            var diseaseName = result?.disease?.suggestions[0]?.name || "N/A";
+            var probability = (result?.disease?.suggestions[0]?.probability * 100).toFixed(2) + '%' || "N/A";
+            var similarity1 = (result?.disease?.suggestions[0]?.similar_images[0]?.similarity * 100).toFixed(2) + '%' || "N/A";
+            var similarity2 = (result?.disease?.suggestions[0]?.similar_images[1]?.similarity * 100).toFixed(2) + '%' || "N/A";
+
+            var message = `Hey, this is my plant health report. I would like to know more about the following diagnosis:\n\n` +
+                `- Disease: ${diseaseName}\n` +
+                `- Probability: ${probability}\n` +
+                `- Similarities with other images: \n` +
+                `  1. ${similarity1}\n` +
+                `  2. ${similarity2}\n\n` +
+                `Looking forward to discussing this with you.`;
+
+            var url = 'https://wa.me/' + whatsappNumber + '/?text=' + encodeURIComponent(message);
+            window.open(url);
+        }
+
+
+    </script>
+
+</body>
+
+</html>

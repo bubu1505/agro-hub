@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <style>
+        /* Reset some default styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Center the registration container */
+        .register-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #7dc78f; /* Light green background */
+        }
+
+        /* Style the registration form */
+        .register-form {
+            background: #ffffff; /* White background for form */
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .register-form h1 {
+            margin-bottom: 1rem;
+            color: #388E3C; /* Dark green for the header */
+            text-align: center;
+        }
+
+        .register-form label {
+            display: block;
+            margin: 0.5rem 0 0.2rem;
+            color: #333;
+        }
+
+        .register-form input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .register-form button {
+            width: 100%;
+            padding: 0.75rem;
+            background: #388E3C; /* Dark green for the button */
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .register-form button:hover {
+            background: #2E7D32; /* Slightly darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-form">
+            <h1>Register</h1>
+            <form action="#" method="post">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

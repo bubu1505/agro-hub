@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Product Page</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background */
+            color: #333;
+        }
+        header {
+            background-color: #1e3a8a; /* Dark blue header */
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+            
+        }
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1e3a8a;
+            text-align: center;
+        }
+        .product-section {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem; /* Add margin at the bottom of each section */
+            border: 2px solid #1e3a8a; /* Border around each section */
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow for the sections */
+            background-color: #ffffff; /* Background color of sections */
+        }
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        .product-card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .product-card h2 {
+            margin: 1rem 0 0.5rem;
+            font-size: 1.25rem;
+            color: #1e3a8a;
+        }
+        .product-card p {
+            margin: 0.5rem 0;
+            color: #555;
+        }
+        .product-card button {
+            background-color: #1e3a8a;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .product-card button:hover {
+            background-color: #3b82f6; /* Lighter blue on hover */
+        }
+        .explore-button {
+            display: block;
+            margin: 2rem auto 0;
+            background-color: #1e3a8a;
+            color: #fff;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .explore-button:hover {
+            background-color: #3b82f6; /* Lighter blue on hover */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .product-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            .product-card {
+                width: 90%; /* Make product cards wider on small screens */
+            }
+            .explore-button {
+                width: 80%; /* Full width of the container on small screens */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 1.25rem; /* Smaller font size for section titles on mobile */
+            }
+            .product-card {
+                padding: 0.5rem;
+                width: 100%; /* Full width on very small screens */
+            }
+            .product-card h2 {
+                font-size: 1rem; /* Smaller font size for product titles on mobile */
+            }
+            .product-card button {
+                padding: 0.5rem 1rem; /* Smaller button padding on mobile */
+            }
+            .explore-button {
+                padding: 0.75rem 1.5rem; /* Adjust button padding on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Products</h1>
+</header>
+
+<div class="container">
+    <!-- Seeds Section -->
+    <div class="section-title">Seeds</div>
+    <div class="product-section">
+        <div class="product-card">
+            <img src="https://images.meesho.com/images/products/352610461/3mqfo_512.webp" alt="Seed 1">
+            <h2>Organic Wheat Seeds</h2>
+            <p>Rs. 109</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8RY5M-sFI_HaStkAiecKFJ99GONIK6xk8zA&s" alt="Seed 2">
+            <h2>Rice Seeds</h2>
+            <p>Rs.1299</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://www.bigbasket.com/media/uploads/p/l/40223038_1-bb-royal-organic-popcorn-seeds.jpg" alt="Seed 3">
+            <h2>Corn Seeds</h2>
+            <p>Rs.999</p>
+            <button>Add to Cart</button>
+        </div>
+        <button class="explore-button">Explore More Seeds</button>
+    </div>
+
+    <!-- Fertilizers Section -->
+    <div class="section-title">Fertilizers</div>
+    <div class="product-section">
+        <div class="product-card">
+            <img src="https://gogarden.co.in/cdn/shop/files/vermicompost-benefits-for-plants-vermicompost-for-indoor-plants-4_eeace8e8-85c4-4213-9922-dee842174c55.jpg?v=1684128492" alt="Fertilizer 1">
+            <h2>Organic Compost</h2>
+            <p>Rs.1599</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://images.jdmagicbox.com/quickquotes/images_main/-6da86f8h.jpg" alt="Fertilizer 2">
+            <h2>Nitrogen Fertilizer</h2>
+            <p>Rs.1899</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://www.coromandel.biz/wp-content/uploads/2021/07/phosgrow_phosgold_big.png" alt="Fertilizer 3">
+            <h2>Phosphate Fertilizer</h2>
+            <p>Rs.1499</p>
+            <button>Add to Cart</button>
+        </div>
+        <button class="explore-button">Explore More Fertilizers</button>
+    </div>
+
+    <!-- Medicines Section -->
+    <div class="section-title">Medicines</div>
+    <div class="product-section">
+        <div class="product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLJi-1EjHF6VGL61u4zE7g2txm5LUvjBOuAQ&s" alt="Medicine 1">
+            <h2>Plant Insecticide</h2>
+            <p>Rs.799</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQorecDIVi1XLw5dzn1JELqttwdPi3RAnqnBw&s" alt="Medicine 2">
+            <h2>Fungicide</h2>
+            <p>Rs.999</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://image.made-in-china.com/44f3j00OPVqCgBFksbf/Cyhalofop-Butyl-15-Penoxsulam-3-18-Od-Rice-Field-herbicide-high-safety.webp" alt="Medicine 3">
+            <h2>Herbicide</h2>
+            <p>Rs.899</p>
+            <button>Add to Cart</button>
+        </div>
+        <button class="explore-button">Explore More Medicines</button>
+    </div>
+</div>
+
+</body>
+</html>
